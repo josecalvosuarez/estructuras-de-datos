@@ -19,8 +19,8 @@ def parse_args():
 
 def main():
     """Seed sample loans on first run, then print a loan report."""
-    args = parse_args()
-    ledger = LibraryLedger(args.filename)
+   # args = parse_args()
+    ledger = LibraryLedger("my-archivo.txt")
 
     if not ledger.loans:
         ledger.checkout("Clean Code", "Ana Rodriguez", loan_days=7)

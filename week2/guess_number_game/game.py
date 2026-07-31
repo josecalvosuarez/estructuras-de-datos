@@ -2,6 +2,21 @@
 
 import random
 
+HIGHER_HINTS = ["Higher! Aim bigger.", "Nope, go higher.", "Higher, don't be shy."]
+LOWER_HINTS = ["Lower! That's too big.", "Come down a bit.", "Lower, champ."]
+PLAYER_WIN_REMARKS = ["Nailed it!", "Sharp shooter!", "You got it!"]
+PLAYER_LOSE_REMARKS = [
+    "Better luck next time!",
+    "That number was too sneaky for you, huh?",
+    "So close, yet so far.",
+]
+CPU_WIN_REMARKS = ["I knew it!", "Mind-reading level: expert.", "Too easy for me!"]
+CPU_LOSE_REMARKS = [
+    "You win! I clearly need to recalibrate my circuits.",
+    "Impressive. My CPU is blushing.",
+    "Well played, human.",
+]
+
 
 class GuessNumberGame:
     """Base configuration shared by both game modes."""
@@ -86,13 +101,13 @@ class PlayerGuessesMode(GuessNumberGame):
 
             if guess == secret_number:
                 print(f"Correct! The number was {secret_number}. "
-                      f"You used {self.attempts_used} attempt(s).")
+                      f"You used {self.attempts_used} attempt(s). {random.choice(PLAYER_WIN_REMARKS)}")
                 return True
 
-            hint = "higher" if guess < secret_number else "lower"
-            print(f"Try {hint}. Attempts left: {self.attempts_left}")
+            hint = random.choice(HIGHER_HINTS) if guess < secret_number else random.choice(LOWER_HINTS)
+            print(f"{hint} Attempts left: {self.attempts_left}")
 
-        print(f"Out of tries! The number was {secret_number}.")
+        print(f"Out of tries! The number was {secret_number}. {random.choice(PLAYER_LOSE_REMARKS)}")
         return False
 
     def _read_guess(self):
@@ -129,14 +144,14 @@ class ComputerGuessesMode(GuessNumberGame):
 
             if response == "c":
                 print(f"I guessed it! Your number was {guess}. "
-                      f"It took me {self.attempts_used} attempt(s).")
+                      f"It took me {self.attempts_used} attempt(s). {random.choice(CPU_WIN_REMARKS)}")
                 return True
             elif response == "h":
                 high = guess - 1
             else:
                 low = guess + 1
 
-        print("I couldn't guess your number in time. You win!")
+        print(f"I couldn't guess your number in time. {random.choice(CPU_LOSE_REMARKS)}")
         return False
 
     def _read_response(self, guess):

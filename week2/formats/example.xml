@@ -1,0 +1,10 @@
+<user>
+  <id>1</id>
+  <name>John Doe</name>
+  <email>john.doe@example.com</email>
+  <is_active>true</is_active>
+  <roles>
+    <role>admin</role>
+    <role>editor</role>
+  </roles>
+</user>

@@ -1,0 +1,2 @@
+Clean Code|Ana Rodriguez|2026-07-30|2026-08-06|1
+The Pragmatic Programmer|Luis Mora|2026-07-30|2026-08-13|0
